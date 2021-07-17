@@ -1,15 +1,17 @@
 import * as THREE from 'three'
 import vertexShader from './shaders/vertex.glsl'
 import fragmentShader from './shaders/fragment.glsl'
+import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
+import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl'
 
 const scene = new THREE.Scene()
 
 const camera = new THREE
-      .PerspectiveCamera(75, innerWidth/innerHeight, 0.1, 1000)
+      .PerspectiveCamera(78, innerWidth/innerHeight, 0.1, 1000)
 
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
-  alpha: true 
+  //alpha: true 
 })
 
 renderer.setSize(innerWidth, innerHeight)
@@ -17,6 +19,7 @@ renderer.setPixelRatio(window.devicePixelRatio)
 
 document.body.appendChild(renderer.domElement)
 
+// Earth Sphere
 const sphere = new THREE.Mesh(
   new THREE.SphereGeometry(5, 50, 50), 
   new THREE.ShaderMaterial({
@@ -29,14 +32,28 @@ const sphere = new THREE.Mesh(
     }     
   })
 )
-
 scene.add(sphere)
+
+// Atmosphere
+const atmosphere = new THREE.Mesh(
+  new THREE.SphereGeometry(5, 50, 50), 
+  new THREE.ShaderMaterial({
+    vertexShader: atmosphereVertexShader,
+    fragmentShader: atmosphereFragmentShader ,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide    
+  })
+)
+scene.add(atmosphere)
+
+atmosphere.scale.set(1.1, 1.1, 1.1)
 
 camera.position.z = 9 
 
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
+  sphere.rotation.y += 0.003
 }
 
 animate()
