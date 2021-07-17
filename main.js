@@ -87,8 +87,7 @@ const mouse = {
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
-  sphere.rotation.y += 0.002
-  
+  //sphere.rotation.y += 0.002  
   gsap.to(group.rotation, {
     x: -mouse.y * 0.3,
     y: mouse.x * 0.5,
