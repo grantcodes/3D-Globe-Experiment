@@ -79,9 +79,34 @@ scene.add(stars)
 
 camera.position.z = 15
 
+// Location Points
+const point = new THREE.Mesh(
+  new THREE.SphereGeometry(0.05, 50, 50),
+  new THREE.MeshBasicMaterial({
+    color: '#ff0000'
+  })
+)
+
+//23.6345° N, 102.5528° W MEXICO
+const latitude = (23.6345 / 180) * Math.PI
+const longitude = (102.5528 / 180) * Math.PI
+const radius = 6
+
+const x = radius * Math.cos(latitude) * Math.sin(longitude)
+const y = radius * Math.sin(latitude)
+const z = radius * Math.cos(latitude) * Math.cos(longitude)
+
+point.position.x = x
+point.position.y = y
+point.position.z = z
+
+group.add(point)
+
+sphere.rotation.y = -(Math.PI / 1.6)
+
 const mouse = {
   x: 0,
-  y: 0
+  y: 0  
 }
 
 function animate() {
