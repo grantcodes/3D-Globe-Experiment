@@ -79,43 +79,54 @@ scene.add(stars)
 
 camera.position.z = 15
 
-const point = new THREE.Mesh(
-  new THREE.SphereGeometry(0.1, 50, 50),
-  new THREE.MeshBasicMaterial({ 
-    color: '#ff0000'
-  })
-)
+function createPoint(lat, lng) {
+  const point = new THREE.Mesh(
+    new THREE.SphereGeometry(0.1, 50, 50),
+    new THREE.MeshBasicMaterial({ 
+      color: '#ff0000'
+    })
+  )
 
-// 23.6345° N, 102.5528° W = MEXICO
-// convert lat & lng to radians
-const latitude = (23.6345 / 180) * Math.PI;
-const longitude = (-102.5528 / 180) * Math.PI;
-const radius = 5;
+  // convert lat & lng to radians
+  const latitude = (lat / 180) * Math.PI;
+  const longitude = (lng / 180) * Math.PI;
 
-const x = radius * Math.cos(latitude) * Math.sin(longitude)
-const y = radius * Math.sin(latitude)
-const z = radius * Math.cos(latitude) * Math.cos(longitude)
+  const radius = 5;
 
-point.position.x = x
-point.position.y = y
-point.position.z = z
+  const x = radius * Math.cos(latitude) * Math.sin(longitude)
+  const y = radius * Math.sin(latitude)
+  const z = radius * Math.cos(latitude) * Math.cos(longitude)
 
-group.add(point)
+  point.position.x = x
+  point.position.y = y
+  point.position.z = z
+
+  group.add(point)
+}
+
+// 23.6345° N, 102.5528° W = Mexico
+createPoint(23.6345, -102.5528)
+
+// 33.8688° S, 151.2093° E = Sydney
+createPoint(-33.8688, 151.2093)
+
+// 33.8688° S, 151.2093° E = Sydney
+createPoint(-33.8688, 151.2093)
 
 sphere.rotation.y = -Math.PI / 2
 
 const mouse = {
-  x: undefined,
-  y: undefined
+  x: 0,
+  y: 0
 }
 
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
-  //sphere.rotation.y += 0.002
+  group.rotation.y += 0.002
   gsap.to(group.rotation, {
-    x: -mouse.y * 1.8,
-    y: mouse.x * 1.8,
+    x: -mouse.y * 1.9,
+    y: mouse.x * 1.9,
     duration: 2
   })
 }
