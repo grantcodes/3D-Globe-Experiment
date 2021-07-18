@@ -138,3 +138,10 @@ addEventListener('mousemove', () => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1
   mouse.y = -(event.clientY / innerHeight) * 2 + 1
 })
+
+window.addEventListener( 'resize', onWindowResize, false );
+function onWindowResize(){
+  camera.aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize( canvasContainer.offsetWidth, canvasContainer.offsetHeight)
+}
