@@ -10,9 +10,9 @@ const canvasContainer = document.querySelector('#canvasContainer')
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(
-  55,
+  75,
   canvasContainer.offsetWidth / canvasContainer.offsetHeight,
-  0.2,
+  0.1,
   1000
 )
 
@@ -31,7 +31,7 @@ const sphere = new THREE.Mesh(
     fragmentShader,
     uniforms: {
       globeTexture: {
-        value: new THREE.TextureLoader().load('./img/globe2.jpg')
+        value: new THREE.TextureLoader().load('./img/globe.jpeg')
       }
     }
   })
@@ -79,18 +79,18 @@ scene.add(stars)
 
 camera.position.z = 15
 
-// Location Points
 const point = new THREE.Mesh(
-  new THREE.SphereGeometry(0.05, 50, 50),
-  new THREE.MeshBasicMaterial({
+  new THREE.SphereGeometry(0.1, 50, 50),
+  new THREE.MeshBasicMaterial({ 
     color: '#ff0000'
   })
 )
 
-//23.6345° N, 102.5528° W MEXICO
-const latitude = (23.6345 / 180) * Math.PI
-const longitude = (102.5528 / 180) * Math.PI
-const radius = 6
+// 23.6345° N, 102.5528° W = MEXICO
+// convert lat & lng to radians
+const latitude = (23.6345 / 180) * Math.PI;
+const longitude = (-102.5528 / 180) * Math.PI;
+const radius = 5;
 
 const x = radius * Math.cos(latitude) * Math.sin(longitude)
 const y = radius * Math.sin(latitude)
@@ -102,34 +102,28 @@ point.position.z = z
 
 group.add(point)
 
-sphere.rotation.y = -(Math.PI / 1.6)
+sphere.rotation.y = -Math.PI / 2
 
 const mouse = {
-  x: 0,
-  y: 0  
+  x: undefined,
+  y: undefined
 }
 
 function animate() {
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
-  //sphere.rotation.y += 0.002  
+  //sphere.rotation.y += 0.002
   gsap.to(group.rotation, {
-    x: -mouse.y * 0.3,
-    y: mouse.x * 0.5,
+    x: -mouse.y * 1.8,
+    y: mouse.x * 1.8,
     duration: 2
   })
 }
 animate()
 
+// TODO: Switch to a mouse grab
 addEventListener('mousemove', () => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1
   mouse.y = -(event.clientY / innerHeight) * 2 + 1
   //console.log(mouse)
 })
-
-window.addEventListener( 'resize', onWindowResize, false );
-function onWindowResize(){
-  camera.aspect = canvasContainer.offsetWidth / canvasContainer.offsetHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize( canvasContainer.offsetWidth, canvasContainer.offsetHeight );
-}
