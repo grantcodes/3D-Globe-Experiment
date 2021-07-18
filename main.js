@@ -6,6 +6,9 @@ import fragmentShader from './shaders/fragment.glsl'
 import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
 import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl'
 
+import * as datacenterJSON from './data/datacenters.json'
+const datacenters = datacenterJSON.default;
+
 const canvasContainer = document.querySelector('#canvasContainer')
 
 const scene = new THREE.Scene()
@@ -77,11 +80,11 @@ starGeometry.setAttribute(
 const stars = new THREE.Points(starGeometry, starMaterial)
 scene.add(stars)
 
-camera.position.z = 15
+camera.position.z = 9
 
 function createPoint(lat, lng) {
   const point = new THREE.Mesh(
-    new THREE.SphereGeometry(0.1, 50, 50),
+    new THREE.SphereGeometry(0.06, 50, 50),
     new THREE.MeshBasicMaterial({ 
       color: '#ff0000'
     })
@@ -104,16 +107,14 @@ function createPoint(lat, lng) {
   group.add(point)
 }
 
-// 23.6345° N, 102.5528° W = Mexico
-createPoint(23.6345, -102.5528)
-
-// 33.8688° S, 151.2093° E = Sydney
-createPoint(-33.8688, 151.2093)
-
-// 33.8688° S, 151.2093° E = Sydney
-createPoint(-33.8688, 151.2093)
+// Add Datacenter points
+datacenters.forEach(function (dc) { 
+  createPoint(dc.latitude, dc.longitude);
+});
 
 sphere.rotation.y = -Math.PI / 2
+
+group.rotation.y = -10.2
 
 const mouse = {
   x: 0,
@@ -136,5 +137,4 @@ animate()
 addEventListener('mousemove', () => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1
   mouse.y = -(event.clientY / innerHeight) * 2 + 1
-  //console.log(mouse)
 })

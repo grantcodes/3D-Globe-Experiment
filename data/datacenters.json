@@ -1,0 +1,164 @@
+[
+  {    
+    "name": "asia-east1",
+    "city": "Changhua County, Taiwan",
+    "latitude": 24.0518,
+    "longitude": 120.5161
+  },
+  {
+    "name": "asia-east2",
+    "city": "Hong Kong",
+    "latitude": 22.3193,
+    "longitude": 114.1694
+  },
+  {
+    "name": "asia-northeast1",
+    "city": "Tokyo, Japan",
+    "latitude": 35.6762,
+    "longitude": 139.6503
+  },
+  {
+    "name": "asia-northeast2",
+    "city": "Osaka, Japan",
+    "latitude": 34.6937,
+    "longitude": 135.5023
+  },
+  {
+    "name": "asia-northeast3",
+    "city": "Seoul, South Korea ",
+    "latitude": 37.5665,
+    "longitude": 126.9780
+  },
+  {
+    "name": "asia-south1",
+    "city": "Mumbai, India",
+    "latitude": 19.0760,
+    "longitude": 72.8777
+  },
+  {
+    "name": "asia-south-2",
+    "city": "Delhi, India",
+    "latitude": 28.7041,
+    "longitude": 77.1025
+  },
+  {
+    "name": "asia-southeast1",
+    "city": "Jurong West, Singapore",
+    "latitude": 1.3404,
+    "longitude": 103.7090
+  },
+  {
+    "name": "asia-southeast2",
+    "city": "Jakarta, Indonesia",
+    "latitude": -6.2088,
+    "longitude": 106.8456
+  },
+  {
+    "name": "australia-southeast1",
+    "city": "Sydney, Australia",
+    "latitude": -33.8688,
+    "longitude": 151.2093
+  },
+  {
+    "name": "australia-southeast2",
+    "city": "Melbourne, Australia",
+    "latitude": -37.8136,
+    "longitude": 144.9631
+  },
+  {
+    "name": "europe-central2",
+    "city": "Warsaw, Poland",
+    "latitude": 52.2297,
+    "longitude": 21.0122
+  },
+  {
+    "name": "europe-north1",
+    "city": "Hamina, Finland",
+    "latitude": 60.5693,
+    "longitude": 27.1878
+  },
+  {
+    "name": "europe-west1",
+    "city": "St. Ghislain, Belgium",
+    "latitude": 50.4491,
+    "longitude": 3.8184
+  },
+  {
+    "name": "europe-west2",
+    "city": "London, United Kingdom",
+    "latitude": 51.5074,
+    "longitude": -0.1278
+  },
+  {
+    "name": "europe-west3",
+    "city": "Frankfurt, Germany",
+    "latitude": 50.1109,
+    "longitude": 8.6821
+  },
+  {
+    "name": "europe-west4",
+    "city": "Eemshaven, Netherlands",
+    "latitude": 53.4386,
+    "longitude": 6.8355
+  },
+  {
+    "name": "europe-west6",
+    "city": "Zurich, Switzerland",
+    "latitude": 47.3769,
+    "longitude": 8.5417
+  },
+  {
+    "name": "northamerica-northeast1",
+    "city": "Montréal, Canada",
+    "latitude": 45.5017,
+    "longitude": -73.5673
+  },
+  {
+    "name": "southamerica-east1",
+    "city": "São Paulo, Brazil",
+    "latitude": -21.2922,
+    "longitude": -50.3428
+  },
+  {
+    "name": "us-central1",
+    "city": "Council Bluffs, Iowa, USA",
+    "latitude": 41.2619,
+    "longitude": -95.8608
+  },
+  {
+    "name": "us-east1",
+    "city": "Moncks Corner, South Carolina, USA",
+    "latitude": 33.1960,
+    "longitude": -80.0131
+  },
+  {
+    "name": "us-east4",
+    "city": "Ashburn, Virginia, USA",
+    "latitude": 39.0438,
+    "longitude": -77.4874
+  },
+  {
+    "name": "us-west1",
+    "city": "The Dalles, Oregon, USA",
+    "latitude": 45.5946,
+    "longitude": -121.1787
+  },
+  {
+    "name": "us-west2",
+    "city": "Los Angeles, California, USA",
+    "latitude": 34.0522,
+    "longitude": -118.2437
+  },
+  {
+    "name": "us-west3",
+    "city": "Salt Lake City, Utah, USA",
+    "latitude": 40.7608,
+    "longitude": -111.8910
+  },
+  {
+    "name": "us-west4",
+    "city": "Las Vegas, Nevada, USA",
+    "latitude": 36.1699,
+    "longitude": -115.1398
+  }
+]
