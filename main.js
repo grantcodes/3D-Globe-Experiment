@@ -81,7 +81,7 @@ starGeometry.setAttribute(
 )
 
 const stars = new THREE.Points(starGeometry, starMaterial);
-scene.add(stars);
+//scene.add(stars);
 
 camera.position.z = 9;
 
@@ -134,12 +134,6 @@ function animate() {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   group.rotation.y += 0.002
-  //gsap.to(group.rotation.y += 0.003);
-  /*gsap.to(group.rotation, {
-    x: -mouse.y * 1.9,
-    y: mouse.x * 1.9,
-    duration: 2
-  })*/
 }
 animate()
 
