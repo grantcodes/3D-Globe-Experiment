@@ -133,7 +133,7 @@ function animate() {
   controls.update();
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
-  group.rotation.y += 0.002
+  group.rotation.y += -0.002
 }
 animate()
 
