@@ -5,32 +5,27 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3D Globe Experiment</title>
-    <link href="./tailwind.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,700&family=Lato&display=swap"
       rel="stylesheet"
     />
     <style>
-      body {
-        margin: 0;
-        -webkit-font-smoothing: antialiased;
+      html, body { 
+        margin:0; 
+        padding:0; 
+        height:100%; 
       }
 
-      .font-exo {
-        font-family: 'Exo 2', sans-serif;
-      }
-
-      .font-lato {
-        font-family: 'Lato', sans-serif;
+      #canvasContainer {
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
   <body>
-    <div class="flex h-screen bg-black">      
-      <div class="w-full" id="canvasContainer">
-        <canvas></canvas>
-      </div>
+    <div id="canvasContainer">
+      <canvas></canvas>
     </div>
     <script type="module" src="/main.js"></script>
   </body>
