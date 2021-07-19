@@ -1,30 +1,33 @@
-import gsap from 'gsap'
-import * as THREE from 'three'
-import vertexShader from './shaders/vertex.glsl'
-import fragmentShader from './shaders/fragment.glsl'
+import gsap from 'gsap';
+import * as THREE from 'three';
+import TrackballControls from 'three-trackballcontrols';
+import vertexShader from './shaders/vertex.glsl';
+import fragmentShader from './shaders/fragment.glsl';
 
-import atmosphereVertexShader from './shaders/atmosphereVertex.glsl'
-import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl'
+import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
+import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 
-import * as datacenterJSON from './data/datacenters.json'
+import * as datacenterJSON from './data/datacenters.json';
 const datacenters = datacenterJSON.default;
 
-const canvasContainer = document.querySelector('#canvasContainer')
+const canvasContainer = document.querySelector('#canvasContainer');
 
-const scene = new THREE.Scene()
+const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
   75,
   canvasContainer.offsetWidth / canvasContainer.offsetHeight,
   0.1,
   1000
-)
+);
 
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
   canvas: document.querySelector('canvas')
 })
-renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight)
-renderer.setPixelRatio(window.devicePixelRatio)
+renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
+
+const controls = new TrackballControls(camera, renderer.domElement);
 
 // create a sphere
 const sphere = new THREE.Mesh(
@@ -51,25 +54,25 @@ const atmosphere = new THREE.Mesh(
   })
 )
 
-atmosphere.scale.set(1.1, 1.1, 1.1)
+atmosphere.scale.set(1.1, 1.1, 1.1);
 
-scene.add(atmosphere)
+scene.add(atmosphere);
 
-const group = new THREE.Group()
-group.add(sphere)
-scene.add(group)
+const group = new THREE.Group();
+group.add(sphere);
+scene.add(group);
 
 const starGeometry = new THREE.BufferGeometry()
 const starMaterial = new THREE.PointsMaterial({
   color: 0xffffff
 })
 
-const starVertices = []
+const starVertices = [];
 for (let i = 0; i < 10000; i++) {
-  const x = (Math.random() - 0.5) * 2000
-  const y = (Math.random() - 0.5) * 2000
-  const z = -Math.random() * 3000
-  starVertices.push(x, y, z)
+  const x = (Math.random() - 0.5) * 2000;
+  const y = (Math.random() - 0.5) * 2000;
+  const z = -Math.random() * 3000;
+  starVertices.push(x, y, z);
 }
 
 starGeometry.setAttribute(
@@ -77,10 +80,10 @@ starGeometry.setAttribute(
   new THREE.Float32BufferAttribute(starVertices, 3)
 )
 
-const stars = new THREE.Points(starGeometry, starMaterial)
-scene.add(stars)
+const stars = new THREE.Points(starGeometry, starMaterial);
+scene.add(stars);
 
-camera.position.z = 9
+camera.position.z = 9;
 
 function createPoint(lat, lng) {
   const point = new THREE.Mesh(
@@ -96,15 +99,15 @@ function createPoint(lat, lng) {
 
   const radius = 5;
 
-  const x = radius * Math.cos(latitude) * Math.sin(longitude)
-  const y = radius * Math.sin(latitude)
-  const z = radius * Math.cos(latitude) * Math.cos(longitude)
+  const x = radius * Math.cos(latitude) * Math.sin(longitude);
+  const y = radius * Math.sin(latitude);
+  const z = radius * Math.cos(latitude) * Math.cos(longitude);
 
-  point.position.x = x
-  point.position.y = y
-  point.position.z = z
+  point.position.x = x;
+  point.position.y = y;
+  point.position.z = z;
 
-  group.add(point)
+  group.add(point);
 }
 
 // Add Datacenter points
@@ -112,24 +115,31 @@ datacenters.forEach(function (dc) {
   createPoint(dc.latitude, dc.longitude);
 });
 
-sphere.rotation.y = -Math.PI / 2
+// Draw Arching line
+function drawArch(start, end, radius) {
 
-group.rotation.y = -10.2
+}
+
+sphere.rotation.y = -Math.PI / 2;
 
 const mouse = {
   x: 0,
   y: 0
 }
 
+controls.update();
+
 function animate() {
-  requestAnimationFrame(animate)
-  renderer.render(scene, camera)
+  controls.update();
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
   group.rotation.y += 0.002
-  gsap.to(group.rotation, {
+  //gsap.to(group.rotation.y += 0.003);
+  /*gsap.to(group.rotation, {
     x: -mouse.y * 1.9,
     y: mouse.x * 1.9,
     duration: 2
-  })
+  })*/
 }
 animate()
 
